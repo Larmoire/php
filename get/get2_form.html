@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get" action="get3.php">
+        <label for="pseudo">Pseudo :</label>
+        <input type="text" id="pseudo" name="pseudo"><br>
+
+        <label for="motdepasse">Mot de passe :</label>
+        <input type="password" id="motdepasse" name="motdepasse"><br>
+
+        <input type="hidden" id="statut" name="statut" value="actif">
+
+        <input type="submit" value="Envoyer">
+
+        <p><a href="get3.php?statut=admin">Je suis admin</a></p>
+        <p><a href="get3.php?statut=visiteur">Je suis visiteur</a></p>
+
+    </form>
+</body>
+</html>
