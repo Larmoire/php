@@ -7,6 +7,7 @@
 <h2>Formulaire Persistant</h2>
 <form action="authenticate.php" method="post">
     <?php
+
     $pseudonyme = $_COOKIE['pseudonyme'] ?? "";
     ?>
     Pseudonyme: <input type="text" name="pseudonyme" value="<?php echo $pseudonyme; ?>"><br>
