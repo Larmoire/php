@@ -1,5 +1,5 @@
 <?php
-namespace system;
+
 /**
  * Class Router
  */
@@ -13,7 +13,7 @@ class Router
      * site/controleur/method
      * site/controleur/method/param1/...
     */
-    function route()
+    function route(): void
     {
         $scriptName = $_SERVER["SCRIPT_NAME"];
         $requestURI = $_SERVER["REQUEST_URI"];
@@ -33,13 +33,13 @@ class Router
         else
             $controllerMethod=$params[0];
         array_shift($params);
-        //try {
-        $controllerinstance = new $controller();
-        $controllerinstance->$controllerMethod($params);
-        //}
-        //catch (Error $e){
-        // echo "route not found $controller $controllerMethod ";
-        // var_dump($params);
-        //};
+        try {
+            $controllerinstance = new $controller();
+            $controllerinstance->$controllerMethod($params);
+        }
+        catch (Error $e){
+            echo "route not found $controller $controllerMethod ";
+            var_dump($params);
+        }
     }
 }

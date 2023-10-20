@@ -1,7 +1,19 @@
 <?php
+
+
 include "config/config.inc.php";
-echo 'Oui';
-echo HOME;
+include "controller/Home.php";
+include "../system/Router.php";
+
+spl_autoload_register(function($class) {
+    $path=$class;
+    if (DIRECTORY_SEPARATOR === '/') {
+        $path=str_replace('\\','/',$class);
+    }
+    if (file_exists($path.'.php'))
+        require_once $path.'.php';
+    });
+
 const CFG = array(
     "db" => array(
         "host" => HOME."data".DIRECTORY_SEPARATOR,
@@ -12,5 +24,8 @@ const CFG = array(
         "options" => array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION),
         "exec" => "PRAGMA foreign_keys = ON;"
     ),
-    "siteURL" => "http://localhost/MVC/app/" //votre url
+    "siteURL" => "http://localhost:8080/MVC/app/" //votre url
 );
+
+$router = new Router();
+$router->route();
