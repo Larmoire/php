@@ -3,6 +3,8 @@
 /**
  * Class Router
  */
+namespace system;
+use app\controller\Home;
 class Router
 {
     /**
@@ -27,19 +29,20 @@ class Router
             die();
         }
         $controller = $params[0];
+        if($controller==""){
+            $controller="Home";
+        }
         array_shift($params);
-        if (count($params)==0)
+        if (count($params)==0){
             $controllerMethod="index";
-        else
+        }
+
+        else {
             $controllerMethod=$params[0];
+        }
         array_shift($params);
-        try {
-            $controllerinstance = new $controller();
-            $controllerinstance->$controllerMethod($params);
-        }
-        catch (Error $e){
-            echo "route not found $controller $controllerMethod ";
-            var_dump($params);
-        }
+        $class = "\app\controller\\".$controller;
+        $controllerinstance = new $class();
+        $controllerinstance->$controllerMethod($params);
     }
 }

@@ -1,19 +1,21 @@
 <?php
+
+namespace app\controller;
+
+
+use app\model\repository\MemoryProductRepository;
+use app\model\repository\ProductRepositoryInterface;
+
 class Home
 {
+    private ProductRepositoryInterface $new;
     public function __construct()
     {
-    //instanciation de l'attribut
+        $this->new = new MemoryProductRepository();
+
     }
-    function index(){
-    //Solicitation du modèle
-    //Solicitation de la vue
-    }
-    function method(){
-        echo "method";
-    }
-    function methodeWithParameter(array $params): void
+    function index(): void
     {
-        var_dump($params);
+        var_dump($this->new->findAll());
     }
 }

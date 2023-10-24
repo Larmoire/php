@@ -1,2 +1,2 @@
 <?php
-define("HOME", __DIR__ );
+define("HOME", __DIR__."/../");

@@ -1,18 +1,21 @@
 <?php
 
+namespace app;
+use PDO;
 
 include "config/config.inc.php";
-include "controller/Home.php";
-include "../system/Router.php";
 
 spl_autoload_register(function($class) {
     $path=$class;
     if (DIRECTORY_SEPARATOR === '/') {
         $path=str_replace('\\','/',$class);
     }
-    if (file_exists($path.'.php'))
-        require_once $path.'.php';
-    });
+    $include = HOME."..".DIRECTORY_SEPARATOR.$path.'.php';
+    if (file_exists($include))
+        require $include;
+    else
+        echo $include." not found";
+});
 
 const CFG = array(
     "db" => array(
@@ -27,5 +30,5 @@ const CFG = array(
     "siteURL" => "http://localhost:8080/MVC/app/" //votre url
 );
 
-$router = new Router();
+$router = new \system\Router;
 $router->route();
