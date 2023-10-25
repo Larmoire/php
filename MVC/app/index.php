@@ -14,7 +14,7 @@ spl_autoload_register(function($class) {
     if (file_exists($include))
         require $include;
     else
-        echo $include." not found";
+        echo '<pre>'.$class.PHP_EOL.$include.PHP_EOL.'not found'.'</pre>';
 });
 
 const CFG = array(
@@ -29,6 +29,3 @@ const CFG = array(
     ),
     "siteURL" => "http://localhost:8080/MVC/app/" //votre url
 );
-
-$router = new \system\Router;
-$router->route();

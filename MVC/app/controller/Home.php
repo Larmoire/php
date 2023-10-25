@@ -14,8 +14,8 @@ class Home
         $this->new = new MemoryProductRepository();
 
     }
-    function index(): void
+    function index(): array
     {
-        var_dump($this->new->findAll());
+        return $this->new->findAll();
     }
 }

@@ -4,7 +4,6 @@
  * Class Router
  */
 namespace system;
-use app\controller\Home;
 class Router
 {
     /**
@@ -29,9 +28,9 @@ class Router
             die();
         }
         $controller = $params[0];
-        if($controller==""){
-            $controller="Home";
-        }
+//        if($controller==""){
+//            $controller="Home";
+//        }
         array_shift($params);
         if (count($params)==0){
             $controllerMethod="index";
