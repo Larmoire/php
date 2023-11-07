@@ -14,8 +14,9 @@ class Home
         $this->new = new MemoryProductRepository();
 
     }
-    function index(): array
+    function index(): void
     {
-        return $this->new->findAll();
+        $tab = $this->new->findAll();
+        require HOME.'view'.DIRECTORY_SEPARATOR.'home.php';
     }
 }

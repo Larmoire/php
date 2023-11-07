@@ -11,12 +11,19 @@ class MemoryProductRepository implements ProductRepositoryInterface
 
     public function findAll(): array
     {
-        $arr = array();
-        foreach ($this->produits as $prod){
-            $arr[] = $prod;
+        $newprod = new ProductEntity();
+        $newprod->setName("Baguette");
+        $newprod->setPrice(50);
+        $newprod->setId(1);
+        $newprod->setQuantity(2);
+        $this->add($newprod);
+        $this->add($newprod);
+
+        if(isset($this->produits)){
+            return $this->produits;
         }
 
-        return $arr;
+        return array();
     }
 
     public function findById(int $id): ?\app\model\entity\ProductEntity
@@ -34,7 +41,6 @@ class MemoryProductRepository implements ProductRepositoryInterface
     public function add(\app\model\entity\ProductEntity $product): void
     {
         $this->produits[] = $product;
-
     }
 
     public function update(int $id, \app\model\entity\ProductEntity $product): void

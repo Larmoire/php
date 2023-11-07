@@ -2,6 +2,7 @@
 
 namespace app;
 use PDO;
+use system\Router;
 
 include "config/config.inc.php";
 
@@ -17,6 +18,7 @@ spl_autoload_register(function($class) {
         echo '<pre>'.$class.PHP_EOL.$include.PHP_EOL.'not found'.'</pre>';
 });
 
+
 const CFG = array(
     "db" => array(
         "host" => HOME."data".DIRECTORY_SEPARATOR,
@@ -29,3 +31,6 @@ const CFG = array(
     ),
     "siteURL" => "http://localhost:8080/MVC/app/" //votre url
 );
+
+$routeur = new Router();
+$routeur->route();

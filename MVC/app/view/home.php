@@ -8,21 +8,23 @@
 <table>
     <thead>
     <tr>
-        <th> id </th>
-        <th> name </th>
-        <th> price </th>
-        <th> quantity </th>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>quantity</th>
     </tr>
     </thead>
     <tbody>
-    <?php ?>
-    <tr>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-    </tr>
-    <?php ?>
+    <?php
+    foreach ($tab as $product) {
+        echo "<tr>";
+        echo "<td>" . $product->getId() . "</td>";
+        echo "<td>" . $product->getName() . "</td>";
+        echo "<td>" . $product->getPrice() . "</td>";
+        echo "<td>" . $product->getQuantity() . "</td>";
+        echo "</tr>";
+    }
+    ?>
     </tbody>
 </table>
 </body>
