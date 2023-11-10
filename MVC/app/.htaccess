@@ -1,2 +1,2 @@
 RewriteEngine On
-FallbackResource /devphp/MVC/app/index.php
+FallbackResource ../index.php

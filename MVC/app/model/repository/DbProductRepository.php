@@ -21,8 +21,7 @@ class DbProductRepository implements ProductRepositoryInterface
     {
         $stmt = $this->connexion->prepare("SELECT * FROM product");
         $stmt->execute();
-        $res = $stmt->fetchAll(PDO::FETCH_CLASS,ProductEntity::class);
-        return $res;
+        return $stmt->fetchAll(PDO::FETCH_CLASS,ProductEntity::class);
     }
 
     public function findById(int $id): ?\app\model\entity\ProductEntity
