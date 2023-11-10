@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="madb.db" uuid="cd2724ba-a305-408e-819b-e7a88db88f04">
+    <data-source source="LOCAL" name="madb" uuid="479beea4-8663-4a35-9f32-93da53d3e001">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:/var/home/E226739F/reseau/Perso/Documents/2/php/MVC/app/data/madb.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/MVC/app/data/madb.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.43.0/org/xerial/sqlite-jdbc/3.43.0.0/sqlite-jdbc-3.43.0.0.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

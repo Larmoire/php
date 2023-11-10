@@ -6,7 +6,7 @@ use PDO;
 
 class DbProductRepository implements ProductRepositoryInterface
 {
-    private $connexion;
+    private PDO $connexion;
     public function __construct()
     {
         $dsn = "sqlite:".CFG["db"]["host"].CFG["db"]["database"];
@@ -19,7 +19,6 @@ class DbProductRepository implements ProductRepositoryInterface
     }
     public function findAll(): array
     {
-
         $stmt = $this->connexion->prepare("SELECT * FROM product");
         $stmt->execute();
         $res = $stmt->fetchAll(PDO::FETCH_CLASS,ProductEntity::class);

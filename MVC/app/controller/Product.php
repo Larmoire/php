@@ -14,11 +14,11 @@ class Product
     function addProduct(){
         //TODO
     }
-    function display( array $params){
-
-
+    function display( array $params): void
+    {
         //$params est positionné par le routeur
         //comme étant un tableau indexé contenant les paramètres
+        $repository = $this->repository;
         require HOME.'view'.DIRECTORY_SEPARATOR.'displayProduct.php';
     }
     function update(array $params){
@@ -28,6 +28,6 @@ class Product
         //TODO
     }
     function delete(array $params){
-        //TODO
+
     }
 }

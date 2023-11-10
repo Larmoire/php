@@ -23,21 +23,20 @@ class Router
         $prefix = substr($scriptName, 0, strlen($scriptName) - 9);
         //Le suffixe est le requestURI privé du préfix
         $suffix = substr($requestURI,strlen($prefix));
-
         $params = explode("/", $suffix);
         if (count($params) == 0) {
             echo "no controller found";
             die();
         }
-
         $controller = $params[0];
         array_shift($params);
 
-        if (count($params)==0)
+        if (count($params)==0){
             $controllerMethod="index";
-        else
+        }
+        else {
             $controllerMethod=$params[0];
-
+        }
         array_shift($params);
         $class = "\app\controller\\".$controller;
         $controllerinstance = new $class();

@@ -5,6 +5,27 @@
     <title>Mon magasin</title>
 </head>
 <body>
-<!-- TODO -->
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($repository->findAll() as $product) {
+        echo "<tr>";
+        echo "<td>" . $product->getId() . "</td>";
+        echo "<td>" . $product->getName() . "</td>";
+        echo "<td>" . $product->getPrice() . "</td>";
+        echo "<td>" . $product->getQuantity() . "</td>";
+        echo "</tr>";
+    }
+    ?>
+    </tbody>
+</table>
 </body>
 </html>
