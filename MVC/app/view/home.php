@@ -22,8 +22,13 @@
         echo "<td>" . $product->getName() . "</td>";
         echo "<td>" . $product->getPrice() . "</td>";
         echo "<td>" . $product->getQuantity() . "</td>";
+        echo "<td><a href='update/{$product->getId()}'>Update</a></td>";
+        echo "<td><a href='delete/{$product->getId()}'>Delete</a></td>";
         echo "</tr>";
     }
+    echo '<form method="post" action="../User/logout">';
+    echo '<input type="submit" value="Log out" >';
+    echo '</form>';
     ?>
     </tbody>
 </table>

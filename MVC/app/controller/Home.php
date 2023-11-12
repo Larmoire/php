@@ -17,6 +17,6 @@ class Home
     function index(): void
     {
         $tab = $this->new->findAll();
-        require HOME.'view'.DIRECTORY_SEPARATOR.'home.php';
+        require HOME.'view'.DIRECTORY_SEPARATOR.'index.php';
     }
 }

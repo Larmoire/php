@@ -1,6 +1,8 @@
 <?php
 
 namespace app\model\repository;
+use app\model\entity\ProductEntity;
+
 Interface ProductRepositoryInterface
 {
     public function findAll(): array;

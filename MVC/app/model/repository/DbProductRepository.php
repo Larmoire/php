@@ -2,7 +2,9 @@
 
 namespace app\model\repository;
 use app\model\entity\ProductEntity;
+use mysql_xdevapi\Exception;
 use PDO;
+use PDOException;
 
 class DbProductRepository implements ProductRepositoryInterface
 {
@@ -23,27 +25,54 @@ class DbProductRepository implements ProductRepositoryInterface
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS,ProductEntity::class);
     }
-
     public function findById(int $id): ?\app\model\entity\ProductEntity
     {
+
         $stmt = $this->connexion->prepare("SELECT * FROM product where id=:id");
         $stmt->bindParam(":id",$id);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC, ProductEntity::class);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        $prod = new ProductEntity();
+        if($res){
+            $prod->setId($res["id"]);
+            $prod->setName($res["name"]);
+            $prod->setPrice($res["price"]);
+            $prod->setQuantity($res["quantity"]);
+            return $prod;
+        }
+        return null;
     }
 
-    public function add(\app\model\entity\ProductEntity $product)
+    public function add(\app\model\entity\ProductEntity $product): ?ProductEntity
     {
-        // TODO: Implement add() method.
+        $stmt = $this->connexion->prepare("INSERT INTO product values({$product->getId()},'{$product->getName()}',{$product->getPrice()},{$product->getQuantity()})");
+        try {
+            $stmt->execute();
+        }
+        catch (PDOException $exception){
+            echo '<pre>'.$exception->getMessage().'</pre>';
+            return null;
+        }
+        return $this->findById($product->getId());
     }
 
-    public function update(int $id, \app\model\entity\ProductEntity $product)
+    public function update(int $id, \app\model\entity\ProductEntity $product): void
     {
-        // TODO: Implement update() method.
+        $stmt = $this->connexion->prepare("UPDATE product set name=:name, price=:price, quantity=:quantity where id =:id");
+        $stmt->bindParam(":id",$id);
+        $name = $product->getName();
+        $stmt->bindParam(":name",$name);
+        $price = $product->getPrice();
+        $stmt->bindParam(":price",$price);
+        $quantity = $product->getQuantity();
+        $stmt->bindParam(":quantity",$quantity);
+        $stmt->execute();
     }
 
     public function delete(int $id): bool
     {
-        // TODO: Implement delete() method.
+        $stmt = $this->connexion->prepare("DELETE FROM product where id=:id");
+        $stmt->bindParam(":id",$id);
+        return $stmt->execute();
     }
 }

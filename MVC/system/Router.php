@@ -24,23 +24,25 @@ class Router
         //Le suffixe est le requestURI privé du préfix
         $suffix = substr($requestURI,strlen($prefix));
         $params = explode("/", $suffix);
-        if (count($params) == 0) {
-            echo "no controller found";
-            die();
-        }
-        $controller = $params[0];
-        array_shift($params);
-
-        if (count($params)==0){
-            $controllerMethod="index";
+        if ($params[0] == "") {
+            header("Location: http://localhost:8080/devphp/MVC/app/Home/index");
+            die;
         }
         else {
-            $controllerMethod=$params[0];
+            $controller = $params[0];
+            array_shift($params);
+
+            if ($params[0]==""){
+                $controllerMethod="index";
+            }
+            else {
+                $controllerMethod=$params[0];
+            }
+
+            array_shift($params);
         }
-        array_shift($params);
         $class = "\app\controller\\".$controller;
         $controllerinstance = new $class();
         $controllerinstance->$controllerMethod($params);
-
     }
 }

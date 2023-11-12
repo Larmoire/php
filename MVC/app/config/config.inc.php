@@ -14,5 +14,5 @@ const CFG = array(
         "options" => array(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION),
         "exec" => "PRAGMA foreign_keys = ON;"
     ),
-    "siteURL" => "http://localhost:8080/MVC/app/" //votre url
+    "siteURL" => "http://localhost:8080/devphp/MVC/app/" //votre url
 );
